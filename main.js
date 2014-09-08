@@ -1052,13 +1052,23 @@ var items = [{
 //	})
 
 /*Second Attempt*/
-	console.log('Items that cost between $14.00 USD and 18.00 USD:');
+	//console.log('Items that cost between $14.00 USD and 18.00 USD:');
+	//var priceArray = [];
+	//items.forEach(function(item){
+		//if(item.price>14 && item.price<18)
+		//priceArray.push ('title: '+item.title);
+	//})
+	//console.log(priceArray);
+
+  console.log('Items that cost between $14.00 USD and 18.00 USD:');
 	var priceArray = [];
 	items.forEach(function(item){
 		if(item.price>14 && item.price<18)
 		priceArray.push ('title: '+item.title);
 	})
-	console.log(priceArray);
+	newArray = [];
+	newArray.push(priceArray);
+	console.log(newArray);
 
 
 
