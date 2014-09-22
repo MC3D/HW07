@@ -1037,7 +1037,7 @@ var items = [{
 		var avg_price = (total_price/price_list.length);
 	/*Using toFixed(2) rounds the average price*/
 		console.log("The average price is $" + avg_price.toFixed(2));
-	/*This will not round the average price; it matches the answer key; I don’t completely understand it; please explain*/
+	/*This will not round the average price*/
 		avg_price-=avg_price%.01;
 		console.log('The average price is $' + avg_price);
 
