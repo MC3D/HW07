@@ -1,4 +1,4 @@
-/* globals _, items */
+/* globals _, items, alert */
 
 (function() {
   'use strict';
@@ -75,16 +75,16 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   console.log('ANSWER #5');
-  var materialsMin8 = _.filter(items, function(item){
+  var materialsMin8 = _.filter(items, function(item) {
     return item.materials.length > 7;
   });
 
-  _.each(materialsMin8, function(item){
+  _.each(materialsMin8, function(item) {
     console.log(item.title + ' has ' + item.materials.length + ' materials.');
-    _.each(item.materials, function(material){
+    _.each(item.materials, function(material) {
       console.log(material);
     });
-      console.log('\n');
+    console.log('\n');
   });
 
 
@@ -92,9 +92,197 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   console.log('ANSWER #6');
-  var madeBySeller = _.filter(items, function(item){
+  var madeBySeller = _.filter(items, function(item) {
     return item.who_made === 'i_did';
   });
 
   console.log(madeBySeller.length + ' were made by their sellers');
+  console.log('\n');
+
+  console.log('LEVEL UP and POWER LEVEL 9000 functions (responses) are stored in main.js.');
+
+  // LEVEL UP
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 1. Define a function max() that takes two numbers as arguments and returns the largest of them. Use the if-then-else construct available in Javascript.
+
+  function max(a, b) {
+    if (a > b) {
+      return a;
+    } else {
+      return b;
+    }
+  }
+
+  max(2, 3); // returns 3
+
+  // 2. Define a function maxOfThree() that takes three numbers as arguments and returns the largest of them.
+
+  function maxOfThree(a, b, c) {
+    if (a > b && a > c) {
+      return a;
+    } else if (b > c) {
+      {
+        return b;
+      }
+    } else {
+      return c;
+    }
+  }
+
+  maxOfThree(1, 2, 3); // returns 3
+  maxOfThree(2, 3, 1); // returns 3
+  maxOfThree(3, 2, 1); // returns 3
+
+  // 3. Write a function that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise.
+
+  function isVowel(character) {
+    var vowels = ['a', 'e', 'i', 'o', 'u'];
+
+    if (vowels.indexOf(character.toLowerCase()) !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isVowel('a'); // returns true
+  isVowel('b'); // returns false
+
+  // 4. Write a function translate() that will translate a text into 'rövarspråket'. That is, double every consonant and place an occurrence of 'o' in between. For example, translate('this is fun') should return the string 'tothohisos isos fofunon'.
+  var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+
+  function translate(string) {
+    var character, newString = '';
+    string.toLowerCase();
+    for (var i = 0; i < string.length; i++) {
+      character = string[i];
+      if (consonants.indexOf(character) !== -1) {
+        newString = newString + character + 'o' + character;
+      } else {
+        newString = newString + character;
+      }
+    }
+    return newString;
+  }
+
+  translate('this is fun'); // returns 'tothohisos isos fofunon'
+
+  // 5. Define a function sum() and a function multiply() that sums and multiplies (respectively) all the numbers in an array of numbers. For example, sum([1,2,3,4]) should return 10, and multiply([1,2,3,4]) should return 24.
+
+  var array = [1, 2, 3, 4];
+
+  function sum(array) {
+    return array.reduce(function(a, b) {
+      return a + b;
+    });
+  }
+
+  function multiply(array) {
+    return array.reduce(function(a, b) {
+      return a * b;
+    });
+  }
+
+  sum(array); // returns 10
+  multiply(array); // returns 24
+
+  // 6. Define a function reverse() that computes the reversal of a string. For example, reverse('jag testar') should return the string 'ratset gaj'.
+
+  function reverse(string) {
+    return string.split('').reverse().join('');
+  }
+
+  reverse('jag testar'); // returns 'ratset gaj'
+
+  // 7. Represent a small bilingual lexicon as a Javascript object in the following fashion {'merry':'god', 'christmas':'jul', 'and':'och', 'happy':gott', 'new':'nytt', 'year':'år'} and use it to translate your Christmas cards from English into Swedish.
+
+  // var message = 'Merry Christmas and Happy New Year!';
+  //
+  // var swedishText = {
+  //   'merry': 'god',
+  //   'christmas': 'jul',
+  //   'and': 'och',
+  //   'happy': 'gott',
+  //   'new': 'nytt',
+  //   'year': 'år'
+  // };
+  //
+  // function translator(string){
+  //   var n = string.split(' ');
+  //   return n[n.length - 1];
+  // }
+
+  // 8. Write a function findLongestWord() that takes an array of words and returns the length of the longest one.
+  //
+  // 9. Write a function filterLongWords() that takes an array of words and an integer i and returns the array of words that are longer than i.
+
+  var words = ['hello', 'world', 'does', 'anyone', 'really', 'know', 'what', 'time', 'it', 'is'];
+
+  function filterLongWords(array, i){
+    return array.filter(function(item){
+      return item.length > i;
+    });
+  }
+
+  filterLongWords(words, 4); // returns ["hello", "world", "anyone", "really"]
+
+  // // 10. Write a function charFreq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Javascript object. Try it with something like charFreq('abbabcbdbabdbdbabababcbcbab').
+  //
+  // function charFreq(string) {
+  //   var frequency = {};
+  //   for (var i = string.length-1; i >= 0 ; i--) {
+  //     var currLetter = string.slice(i, i + 1);
+  //     if (frequency[currLetter] === undefined) {
+  //       Object.defineProperty(frequency, currLetter, {value: 1, configurable: true});
+  //     }
+  //     else {
+  //       Object.defineProperty(frequency, currLetter, {value: frequency[currLetter] + 1});}}
+  //     return frequency;
+  // }
+
+  // POWER LEVEL 9000
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // 1. Write your own forEach function. It takes the array and the function (referred to as a callback) as arguments:
+  //     ```js
+  //     function forEach(list, callback) { /* Do stuff */ }
+  //     ```
+  //
+  // 2. Write your own map, reduce, and filter that use your custom forEach to do their work.
+  //
+  // 3. Write a function called pluck that extracts a list of property names:
+  //     ```js
+  //     function pluck(list, propertyName) { /* Do stuff*/ }
+  //
+  //     var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+  //     pluck(stooges, 'name');
+  //     // => ['moe', 'larry', 'curly']
+  //     ```
+  //
+  // 4. Write a function called reject that returns the values in list without the elements that the truth test (predicate) passes. The opposite of filter.
+  //     ```js
+  //     function reject(list, predicate) { /* Do stuff */ }
+  //
+  //     var odds = reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+  //     //=> [1, 3, 5]
+  //     ```
+  //
+  // 5. Write a function called find that looks through each value in the list, returning the first one that passes a truth test (predicate), or undefined if no value passes the test. The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
+  //     ```js
+  //     function find(list, predicate) { /* Do stuff */ }
+  //
+  //     var even = find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+  //     //=> 2
+  //     ```
+  //
+  // 6. Write a function called where that looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties.
+  //     ```js
+  //     function where(list, properties) { /* Do stuff */ }
+  //
+  //     where(listOfPlays, {author: 'Shakespeare', year: 1611});
+  //     // => [{title: 'Cymbeline', author: 'Shakespeare', year: 1611},
+  //     //     {title: 'The Tempest', author: 'Shakespeare', year: 1611}]
+  //     ```
+
 })();
