@@ -1,4 +1,4 @@
-# 09/03/14
+# 9/4/14
 Using the gist below, use the array of objects defined at the bottom of the script to answer the questions at the top of the script.
 
 https://gist.github.com/masondesu/1eafc9e7dff1ca7666ba

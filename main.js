@@ -1,4 +1,4 @@
-/* globals _, items, alert */
+/* globals _, items */
 
 (function() {
   'use strict';
@@ -99,7 +99,7 @@
   console.log(madeBySeller.length + ' were made by their sellers');
   console.log('\n');
 
-  console.log('LEVEL UP and POWER LEVEL 9000 functions (responses) are stored in main.js.');
+  console.log('LEVEL UP and POWER LEVEL 9000 solutions are stored in main.js.');
 
   // LEVEL UP
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,49 +197,71 @@
 
   // 7. Represent a small bilingual lexicon as a Javascript object in the following fashion {'merry':'god', 'christmas':'jul', 'and':'och', 'happy':gott', 'new':'nytt', 'year':'år'} and use it to translate your Christmas cards from English into Swedish.
 
-  // var message = 'Merry Christmas and Happy New Year!';
-  //
-  // var swedishText = {
-  //   'merry': 'god',
-  //   'christmas': 'jul',
-  //   'and': 'och',
-  //   'happy': 'gott',
-  //   'new': 'nytt',
-  //   'year': 'år'
-  // };
-  //
-  // function translator(string){
-  //   var n = string.split(' ');
-  //   return n[n.length - 1];
-  // }
+  var greeting = 'Merry Christmas And Happy New Year';
+
+  var swedishText = {
+    'merry': 'god',
+    'christmas': 'jul',
+    'and': 'och',
+    'happy': 'gott',
+    'new': 'nytt',
+    'year': 'år'
+  };
+
+  function translator(string) {
+    string = string.toLowerCase();
+    var array = string.split(' ');
+    for (var i = 0; i < array.length; i++) {
+      array[i] = swedishText[array[i]];
+    }
+    string = array.join(' ');
+    return string;
+  }
+
+  translator(greeting); // returns 'god jul och gott nytt år'
 
   // 8. Write a function findLongestWord() that takes an array of words and returns the length of the longest one.
-  //
-  // 9. Write a function filterLongWords() that takes an array of words and an integer i and returns the array of words that are longer than i.
 
   var words = ['hello', 'world', 'does', 'anyone', 'really', 'know', 'what', 'time', 'it', 'is'];
 
-  function filterLongWords(array, i){
-    return array.filter(function(item){
+  function findLongestWord(array) {
+    var length = 0;
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].length > length) {
+        length = array[i].length;
+      }
+    }
+    return length;
+  }
+
+  findLongestWord(words); // returns 6
+  //
+  // 9. Write a function filterLongWords() that takes an array of words and an integer i and returns the array of words that are longer than i.
+
+  function filterLongWords(array, i) {
+    return array.filter(function(item) {
       return item.length > i;
     });
   }
 
-  filterLongWords(words, 4); // returns ["hello", "world", "anyone", "really"]
+  filterLongWords(words, 4); // uses var words defined in #8; returns ["hello", "world", "anyone", "really"]
 
-  // // 10. Write a function charFreq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Javascript object. Try it with something like charFreq('abbabcbdbabdbdbabababcbcbab').
-  //
-  // function charFreq(string) {
-  //   var frequency = {};
-  //   for (var i = string.length-1; i >= 0 ; i--) {
-  //     var currLetter = string.slice(i, i + 1);
-  //     if (frequency[currLetter] === undefined) {
-  //       Object.defineProperty(frequency, currLetter, {value: 1, configurable: true});
-  //     }
-  //     else {
-  //       Object.defineProperty(frequency, currLetter, {value: frequency[currLetter] + 1});}}
-  //     return frequency;
-  // }
+  // 10. Write a function charFreq() that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Javascript object. Try it with something like charFreq('abbabcbdbabdbdbabababcbcbab').
+
+  function charFreq(string) {
+    var freq = {};
+    for (var i = 0; i < string.length; i++) {
+      var char = string.charAt(i);
+      if (freq[char]) {
+        freq[char]++;
+      } else {
+        freq[char] = 1;
+      }
+    }
+    return freq;
+  }
+
+  charFreq('abbabcbdbabdbdbabababcbcbab'); // returns {a: 7, b: 14, c: 3, d: 3}
 
   // POWER LEVEL 9000
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
