@@ -314,7 +314,14 @@
   //     pluck(stooges, 'name');
   //     // => ['moe', 'larry', 'curly']
   //     ```
-  //
+
+  function pluck(list, propertyName){
+    var result = [];
+    for(var i = 0; i <list.length; i++) {
+      result.push(list[i][propertyName]);
+    }
+    return result;
+  }
   // 4. Write a function called reject that returns the values in list without the elements that the truth test (predicate) passes. The opposite of filter.
   //     ```js
   //     function reject(list, predicate) { /* Do stuff */ }
