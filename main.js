@@ -305,7 +305,6 @@
     return results;
   }
 
-
   // 3. Write a function called pluck that extracts a list of property names:
   //     ```js
   //     function pluck(list, propertyName) { /* Do stuff*/ }
@@ -322,6 +321,7 @@
     }
     return result;
   }
+
   // 4. Write a function called reject that returns the values in list without the elements that the truth test (predicate) passes. The opposite of filter.
   //     ```js
   //     function reject(list, predicate) { /* Do stuff */ }
@@ -329,7 +329,28 @@
   //     var odds = reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
   //     //=> [1, 3, 5]
   //     ```
-  //
+
+  function reject(list, callback){
+    var result = [];
+    for(var i = 0; i < list.length; i++){
+      if(!callback(list[i], i)){
+        result.push(list[i]);
+      }
+    }
+    return result;
+  }
+
+  /// TEST TO RETURN odds
+
+  var numbers =  [1, 2, 3, 4, 5, 6];
+  
+  function evenNumbers(num){
+    return num % 2 === 0;
+  }
+
+  reject(numbers, evenNumbers); // => [1, 3, 5]
+
+
   // 5. Write a function called find that looks through each value in the list, returning the first one that passes a truth test (predicate), or undefined if no value passes the test. The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
   //     ```js
   //     function find(list, predicate) { /* Do stuff */ }
