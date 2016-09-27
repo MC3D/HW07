@@ -273,7 +273,7 @@
 
   function forEach(list, callback) { // takes in an array (list) as the first argument and function as the second argument
     for (var i = 0; i < list.length; i++) { // iterate over the list
-      callback(list[i], i); // invokes the callback function that you passed in; passes in the item and the position
+      callback(list[i]);
     }
   }
 
@@ -282,15 +282,15 @@
   function map(list, callback) {
     var result = []; // result will return a new array
     for (var i = 0; i < list.length; i++){
-      result.push(callback(list[i], i));
+      result.push(callback(list[i]));
     }
     return result;
   }
 
-  function reduce(list, callback) {
-    var result = []; // result will return a new array
+  function reduce(list, callback, start) {
+    var result = start;
     for (var i = 0; i < list.length; i++) { // iterate over the list
-      result.push(callback(list[i], i)); // push return value of callback; callback invoked with the item and the position
+      result = callback(result, list[i]);
     }
     return result;
   }
@@ -298,8 +298,8 @@
   function filter(list, callback) {
     var results = []; // results array will contain items that pass the truth test
     for (var i = 0; i < list.length; i++) { // iterate over the list
-      if (callback(list[i], i)) { // invokes the callback function that you passed in; passes in the item and the position
-        results.push(list[i]);
+      if (callback(list[i])) { // invokes the callback function with list item
+        results.push(list[i]); // adds item to results if callback returns true
       }
     }
     return results;
@@ -322,6 +322,12 @@
     return result;
   }
 
+  /// TEST TO RETURN THE THREE STOOGES names
+
+  var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+  pluck(stooges, 'name'); // => ['moe', 'larry', 'curly']
+
+
   // 4. Write a function called reject that returns the values in list without the elements that the truth test (predicate) passes. The opposite of filter.
   //     ```js
   //     function reject(list, predicate) { /* Do stuff */ }
@@ -330,20 +336,20 @@
   //     //=> [1, 3, 5]
   //     ```
 
-  function reject(list, callback){
+  function reject(list, predicate){
     var result = [];
     for(var i = 0; i < list.length; i++){
-      if(!callback(list[i], i)){
+      if(!predicate(list[i])){
         result.push(list[i]);
       }
     }
     return result;
   }
 
-  /// TEST TO RETURN odds
+  /// TEST TO RETURN ODD NUMBERS
 
   var numbers =  [1, 2, 3, 4, 5, 6];
-  
+
   function evenNumbers(num){
     return num % 2 === 0;
   }
@@ -358,7 +364,23 @@
   //     var even = find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
   //     //=> 2
   //     ```
-  //
+
+  function find(list, predicate){
+    var result;
+    for(var i = 0; i < list.length; i++){
+      if(predicate(list[i])){
+        result = list[i];
+        return result;
+      }
+    }
+    return result;
+  }
+
+  /// TEST THAT THE FIRST EVEN NUMBER IS RETURNED
+
+  find(numbers, evenNumbers); // => 2
+
+
   // 6. Write a function called where that looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties.
   //     ```js
   //     function where(list, properties) { /* Do stuff */ }
