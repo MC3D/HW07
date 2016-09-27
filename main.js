@@ -271,27 +271,41 @@
   //     function forEach(list, callback) { /* Do stuff */ }
   //     ```
 
-  function forEach(array, callback) { // takes in an array as the first argument and function as the second argument
-    var item;
-    for(var i = 0; i < array.length; i++){ // iterate over the array
-      callback(array[i], i); // invokes the callback function that you passed in for each item; passes in the item and the position
+  function forEach(list, callback) { // takes in an array (list) as the first argument and function as the second argument
+    for (var i = 0; i < list.length; i++) { // iterate over the list
+      callback(list[i], i); // invokes the callback function that you passed in; passes in the item and the position
     }
   }
 
-  //
   // 2. Write your own map, reduce, and filter that use your custom forEach to do their work.
 
-  function map(){
-
+  function map(list, callback) {
+    var result = []; // result will return a new array
+    for (var i = 0; i < list.length; i++){
+      result.push(callback(list[i], i));
+    }
+    return result;
   }
 
-  function reduce(){
-
+  function reduce(list, callback) {
+    var result = []; // result will return a new array
+    for (var i = 0; i < list.length; i++) { // iterate over the list
+      result.push(callback(list[i], i)); // push return value of callback; callback invoked with the item and the position
+    }
+    return result;
   }
 
-  function filter(){
-
+  function filter(list, callback) {
+    var results = []; // results array will contain items that pass the truth test
+    for (var i = 0; i < list.length; i++) { // iterate over the list
+      if (callback(list[i], i)) { // invokes the callback function that you passed in; passes in the item and the position
+        results.push(list[i]);
+      }
+    }
+    return results;
   }
+
+
   // 3. Write a function called pluck that extracts a list of property names:
   //     ```js
   //     function pluck(list, propertyName) { /* Do stuff*/ }
