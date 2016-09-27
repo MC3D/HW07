@@ -385,7 +385,9 @@
     return list;
   }
 
-  function where(list, properties) {
+  /// THIS DOES THE OPPOSITE
+
+  function notWhere(list, properties) {
     var results = [];
     for (var prop in properties) {
       for (var i = 0; i < list.length; i++) {
