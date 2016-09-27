@@ -270,9 +270,28 @@
   //     ```js
   //     function forEach(list, callback) { /* Do stuff */ }
   //     ```
+
+  function forEach(array, callback) { // takes in an array as the first argument and function as the second argument
+    var item;
+    for(var i = 0; i < array.length; i++){ // iterate over the array
+      callback(array[i], i); // invokes the callback function that you passed in for each item; passes in the item and the position
+    }
+  }
+
   //
   // 2. Write your own map, reduce, and filter that use your custom forEach to do their work.
-  //
+
+  function map(){
+
+  }
+
+  function reduce(){
+
+  }
+
+  function filter(){
+
+  }
   // 3. Write a function called pluck that extracts a list of property names:
   //     ```js
   //     function pluck(list, propertyName) { /* Do stuff*/ }
