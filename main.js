@@ -373,29 +373,28 @@
 
   // 6. Write a function called where that looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties.
 
-  // function where(list, properties) {
-  //   var results = [];
-  //   for (var i = 0; i < list.length; i++) {
-  //     for (var prop in properties) {
-  //       if (list[i][prop] === undefined || list[i][prop] !== properties[prop]) {
-  //         return false;
-  //       }
-  //     }
-  //     results.push(list[i]);
-  //   }
-  //   return results;
-  // }
-
   function where(list, properties) {
     list = list.filter(function(item) {
       for (var prop in properties) {
-        if (item[prop] === undefined || item[prop] !== properties[prop]){
+        if (item[prop] === undefined || item[prop] !== properties[prop]) {
           return false;
         }
       }
       return true;
     });
     return list;
+  }
+
+  function where(list, properties) {
+    var results = [];
+    for (var prop in properties) {
+      for (var i = 0; i < list.length; i++) {
+        if (list[i][prop] === undefined || list[i][prop] !== properties[prop]) {
+          results.push(list[i]);
+        }
+      }
+    }
+    return results; // returns all list items that do not match filter properties
   }
 
   /// TEST THAT THE CORRECT LIST OF PLAYS IS RETURNED
