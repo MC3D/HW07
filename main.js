@@ -263,6 +263,14 @@
 
   charFreq('abbabcbdbabdbdbabababcbcbab'); // returns {a: 7, b: 14, c: 3, d: 3}
 
+  var freq = charFreq('abbabcbdbabdbdbabababcbcbab');
+
+  console.assert(freq.a === 7);
+
+  // for (key in freq) {
+  //   console.assert(frq[key] == correct[key]);
+  // }
+
   // POWER LEVEL 9000
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -304,6 +312,8 @@
     }
     return results;
   }
+
+  // create a anonymous function to use as your callback
 
   // 3. Write a function called pluck that extracts a list of property names:
 
@@ -373,31 +383,49 @@
 
   // 6. Write a function called where that looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties.
 
+  // function whereFilter(list, properties) {
+  //   list = list.filter(function(item) {
+  //     for (var prop in properties) {
+  //       if (item[prop] === undefined || item[prop] !== properties[prop]) {
+  //         return false;
+  //       }
+  //     }
+  //     return true;
+  //   });
+  //   return list;
+  // }
+
   function where(list, properties) {
-    list = list.filter(function(item) {
+    var results = [];
+    var isFound = true;
+    for (var i = 0; i < list.length; i++) {
       for (var prop in properties) {
-        if (item[prop] === undefined || item[prop] !== properties[prop]) {
-          return false;
+        if (list[i][prop] === undefined || list[i][prop] !== properties[prop]) {
+          isFound = false;
         }
       }
-      return true;
-    });
-    return list;
-  }
-
-  /// THIS DOES THE OPPOSITE
-
-  function notWhere(list, properties) {
-    var results = [];
-    for (var prop in properties) {
-      for (var i = 0; i < list.length; i++) {
-        if (list[i][prop] === undefined || list[i][prop] !== properties[prop]) {
-          results.push(list[i]);
-        }
+      if(isFound === true){
+        results.push(list[i]);
       }
     }
     return results; // returns all list items that do not match filter properties
   }
+
+  /// THIS DOES THE OPPOSITE
+
+  // function notWhere(list, properties) {
+  //   var results = [];
+  //   for (var prop in properties) {
+  //     for (var i = 0; i < list.length; i++) {
+  //       if (list[i][prop] === undefined || list[i][prop] !== properties[prop]) {
+  //         results.push(list[i]);
+  //       }
+  //     }
+  //   }
+  //   return results; // returns all list items that do not match filter properties
+  // }
+
+  // set variable on the outside of the loop; default to false; if all true, then set to true and push to array
 
   /// TEST THAT THE CORRECT LIST OF PLAYS IS RETURNED
 
