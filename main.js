@@ -30,7 +30,7 @@
       return item.currency_code === 'USD' && item.price > 14 && item.price < 18
     })
     .map(function(item) {
-      return item.title
+      return item.title;
     })
     .value();
   _.each(priceRangeItems, function(item) {
@@ -279,41 +279,76 @@
   //     function forEach(list, callback) { /* Do stuff */ }
   //     ```
 
-  function forEach(list, callback) { // takes in an array (list) as the first argument and function as the second argument
-    for (var i = 0; i < list.length; i++) { // iterate over the list
-      callback(list[i]);
+  function forEach(array, callback) { // takes in an array as the first argument and function as the second argument
+    for (var i = 0; i < array.length; i++) { // iterate over the array
+      callback(array[i]);
     }
   }
 
   // 2. Write your own map, reduce, and filter that use your custom forEach to do their work.
 
-  function map(list, callback) {
-    var result = []; // result will return a new array
-    for (var i = 0; i < list.length; i++) {
-      result.push(callback(list[i]));
-    }
-    return result;
-  }
-
-  function reduce(list, callback, start) {
-    var result = start;
-    for (var i = 0; i < list.length; i++) { // iterate over the list
-      result = callback(result, list[i]);
-    }
-    return result;
-  }
-
-  function filter(list, callback) {
-    var results = []; // results array will contain items that pass the truth test
-    for (var i = 0; i < list.length; i++) { // iterate over the list
-      if (callback(list[i])) { // invokes the callback function with list item
-        results.push(list[i]); // adds item to results if callback returns true
-      }
-    }
-    return results;
-  }
-
   // create a anonymous function to use as your callback
+
+  // function map(array, callback) {
+  //   var result = []; // result will return a new array
+  //   for (var i = 0; i < array.length; i++) {
+  //     result.push(callback(array[i]));
+  //   }
+  //   return result;
+  // }
+
+  var numbers = [2, 4, 7];
+
+  function map(array) {
+    var result = [];
+    forEach(array, function(item) {
+      result.push(item + 2);
+    });
+    return result;
+  }
+
+  map(numbers) // => [4,6,9]
+
+  // function reduce(array, callback, start) {
+  //   var result = start;
+  //   for (var i = 0; i < array.length; i++) { // iterate over the array
+  //     result = callback(result, array[i]);
+  //   }
+  //   return result;
+  // }
+
+  function reduce(array, start) {
+    var result = start;
+    forEach(array, function(item) {
+      result += item;
+    });
+    return result;
+  }
+
+  reduce(numbers, 0); // => 13
+  reduce(numbers, 10); // => 23
+
+  // function filter(array, callback) {
+  //   var result = []; // result array will contain items that pass the truth test
+  //   for (var i = 0; i < array.length; i++) { // iterate over the array
+  //     if (callback(array[i])) { // invokes the callback function with array item
+  //       result.push(array[i]); // adds item to result if callback returns true
+  //     }
+  //   }
+  //   return result;
+  // }
+
+  function filter(array) {
+    var result = [];
+    forEach(array, function(item) {
+      if (item % 2 === 0) {
+        result.push(item);
+      }
+    });
+    return result;
+  }
+
+  filter(numbers); // => [2, 4]
 
   // 3. Write a function called pluck that extracts a list of property names:
 
@@ -404,7 +439,7 @@
           isFound = false;
         }
       }
-      if(isFound === true){
+      if (isFound === true) {
         results.push(list[i]);
       }
     }
@@ -424,8 +459,6 @@
   //   }
   //   return results; // returns all list items that do not match filter properties
   // }
-
-  // set variable on the outside of the loop; default to false; if all true, then set to true and push to array
 
   /// TEST THAT THE CORRECT LIST OF PLAYS IS RETURNED
 
